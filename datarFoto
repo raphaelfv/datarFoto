@@ -1,0 +1,20 @@
+#!/bin/bash
+#testar entrada
+if [ $# -ne 3 ]; then 
+   echo "Uso do programa: $0 nome_do_arquivo x y"
+   echo "x é a posição horizontal de onde ficará a legenda e y, vertical"
+   exit 1
+fi
+
+#obtem data de ultima modificacao do arquivo
+data=$(stat -c %y $1)
+data=${data%% *}
+echo $data
+
+#converte o formato da data de yyyy-mm-dd para dd/mm/yyyy
+texto=$(date --date=$data +"%d/%m/%y")
+echo $texto
+
+#usar o formato para usar o comando convert
+executar="convert -pointsize 20 -fill yellow -draw 'text $2,$3 \"$texto\"' $1 teste.jpg"
+eval $executar
