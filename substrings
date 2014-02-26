@@ -1,0 +1,14 @@
+#!/bin/bash
+data="abc-cdef-gh"
+echo $data
+deta="abc-cdef-gh"
+dita="abc-cdef-gh"
+dota="abc-cdef-gh"
+data=${data%-*}
+deta=${deta%%-*}
+dita=${dita#*-)}
+dota=${dota##*-}
+echo "%$data"
+echo "%%$deta"
+echo "#$dita"
+echo "##$dota"
