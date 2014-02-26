@@ -8,3 +8,4 @@ Uso: ./datarFoto nome_do_arquivo
 
 Possiveis melhorias: 
 -Operar sobre multiplos arquivos
+-Controlar o tamanho da fonte
