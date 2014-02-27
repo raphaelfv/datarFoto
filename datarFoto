@@ -10,10 +10,18 @@ data=$(stat -c %y $1)
 data=${data%% *}
 echo $data
 
+#gerar nome do arquivo de saida
+nomeSaida=$1
+extensao=${nomeSaida##*.}
+echo "extensao=$extensao"
+nomeSaida=${nomeSaida%.*}
+nomeSaida=$nomeSaida$(date +"_%y%m%d_%H%M")
+echo "nomeSaida=$nomeSaida"
+
 #converte o formato da data de yyyy-mm-dd para dd/mm/yyyy
 texto=$(date --date=$data +"%d/%m/%y")
 echo $texto
 
 #usar o formato para usar o comando convert
-executar="convert -pointsize 20 -fill yellow -gravity Southeast -draw 'text 20,20 \"$texto\"' $1 teste.jpg"
+executar="convert -pointsize 20 -fill yellow -gravity Southeast -draw 'text 20,20 \"$texto\"' $1 $nomeSaida.$extensao"
 eval $executar
